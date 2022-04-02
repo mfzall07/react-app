@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
 function App() {
 
@@ -11,15 +12,16 @@ function App() {
     { id: 5, title: 'Product 5', price: 877 }
   ]);
 
+  const deleteProduct = (productId) => {
+    const newProducts = product.filter(product => product.id !== productId);
+    setProduct(newProducts);
+  }
+
   return (
     <div className="App">
       <Header />
 
-      <ul>
-        { product.map((product) => (
-          <li key={product.id}>{product.title} - {product.price}</li>
-        )) }
-      </ul>
+      <ProductList product={product} deleteProduct={deleteProduct}/>
     </div>
   );
 }
