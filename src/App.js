@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
 
@@ -17,11 +17,18 @@ function App() {
     setProduct(newProducts);
   }
 
+  const [name, setName] = useState ('Zall');
+
+  useEffect(() => {
+    console.log('use Effect Is Running')
+  }, [name])
+
   return (
     <div className="App">
       <Header />
-
       <ProductList product={product} deleteProduct={deleteProduct}/>
+      <button onClick={() => setName('Fzall')}>Change Name</button>
+      <p>{name}</p>
     </div>
   );
 }
